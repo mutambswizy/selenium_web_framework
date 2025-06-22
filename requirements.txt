@@ -1,2 +1,9 @@
 
 pytest-html
+selenium>=4.0.0
+webdriver-manager
+pytest
+pytest-xdist  # for parallel execution
+
+# Run tests in parallel across browsers
+#pytest test_file.py -n auto
