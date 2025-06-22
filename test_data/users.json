@@ -1,0 +1,24 @@
+{
+    "test_users": [
+        {
+            "first_name": "FName1",
+            "last_name": "LName1",
+            "username": "User1",
+            "password": "Pass1",
+            "customer": "Company AAA",
+            "role": "Admin",
+            "email": "admin@mail.com",
+            "phone": "082555"
+        },
+        {
+            "first_name": "FName2",
+            "last_name": "LName2",
+            "username": "User2",
+            "password": "Pass2",
+            "customer": "Company BBB",
+            "role": "Customer",
+            "email": "customer@mail.com",
+            "phone": "083444"
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 import time
 from datetime import datetime
 from pages.user_list_page import UserListPage
+from test_data.data_loader import load_test_users
 
 
 def get_unique_username(base_username):
@@ -9,29 +10,7 @@ def get_unique_username(base_username):
     return f"{base_username}_{timestamp}"
 
 
-# Test data for user creation
-test_users = [
-    {
-        "first_name": "FName1",
-        "last_name": "LName1",
-        "username": "User1",  # Will be made unique during test
-        "password": "Pass1",
-        "customer": "Company AAA",
-        "role": "Admin",
-        "email": "admin@mail.com",
-        "phone": "082555"
-    },
-    {
-        "first_name": "FName2",
-        "last_name": "LName2",
-        "username": "User2",  # Will be made unique during test
-        "password": "Pass2",
-        "customer": "Company BBB",
-        "role": "Customer",
-        "email": "customer@mail.com",
-        "phone": "083444"
-    }
-]
+
 
 
 def test_add_multiple_users(browser):
@@ -44,6 +23,8 @@ def test_add_multiple_users(browser):
 
     # Track added users
     added_usernames = []
+
+    test_users = load_test_users()
 
     for user in test_users:
         # Prepare user data with unique username
