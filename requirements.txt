@@ -7,3 +7,5 @@ pytest-xdist  # for parallel execution
 
 # Run tests in parallel across browsers
 #pytest test_file.py -n auto
+#pytest test_file.py --html=report.html
+
