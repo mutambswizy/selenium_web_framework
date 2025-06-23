@@ -7,9 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  smoke-tests:
     runs-on: ubuntu-latest
-
     services:
       selenium:
         image: selenium/standalone-chrome
@@ -32,15 +31,89 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Selenium tests
+    - name: Run Smoke Tests
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pytest tests/ -m "ui and smoke" --maxfail=5 --disable-warnings --html=reports/report.html
+        pytest tests/ -m "smoke" --maxfail=5 --disable-warnings --html=reports/smoke_report.html
 
-    - name: Upload HTML Report
+    - name: Upload Smoke Test Report
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: test-report
-        path: reports/report.html
+        name: smoke-test-report
+        path: reports/smoke_report.html
+
+  ui-tests:
+    runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size 2g
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run UI Tests
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        pytest tests/ -m "ui" --maxfail=5 --disable-warnings --html=reports/ui_report.html
+
+    - name: Upload UI Test Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ui-test-report
+        path: reports/ui_report.html
+
+  user-tests:
+    runs-on: ubuntu-latest
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+        options: >-
+          --shm-size 2g
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run User Tests
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        pytest tests/ -m "users" --maxfail=5 --disable-warnings --html=reports/users_report.html
+
+    - name: Upload User Test Report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: user-test-report
+        path: reports/users_report.html
