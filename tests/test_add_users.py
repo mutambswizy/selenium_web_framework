@@ -13,7 +13,6 @@ def get_unique_username(base_username):
 
 @pytest.mark.ui
 @pytest.mark.users
-@pytest.mark.smoke
 def test_add_multiple_users(browser):
     # Init page object
     page = UserListPage(browser)
