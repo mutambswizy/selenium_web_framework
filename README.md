@@ -49,6 +49,8 @@ Selenium_web_framework/
 pytest tests/ --html=reports/report.html --self-contained-html
 ```
 
+
+
 ## 📌 Assumptions & Design Decisions
 
 - Page Object Model for maintainability
@@ -69,8 +71,13 @@ pytest tests/ --html=reports/report.html --self-contained-html
 ### 📄 HTML Report
 See: `reports/report.html`
 
+## Video Recording
+https://github.com/user-attachments/assets/b318806b-4488-4308-a02b-1e678e18b3d7
+
+
 ### 📸 Screenshot
-![Screenshot](reports/screenshots/add_user_success.png)
+![image](https://github.com/user-attachments/assets/9f03ed62-bbbd-4d17-bba0-d9f62304fdf0)
+
 
 ## 🚀 CI/CD Pipeline
 
