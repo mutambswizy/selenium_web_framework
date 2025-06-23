@@ -1,4 +1,5 @@
 import time
+import pytest
 from datetime import datetime
 from pages.user_list_page import UserListPage
 from test_data.data_loader import load_test_users
@@ -10,9 +11,9 @@ def get_unique_username(base_username):
     return f"{base_username}_{timestamp}"
 
 
-
-
-
+@pytest.mark.ui
+@pytest.mark.users
+@pytest.mark.smoke
 def test_add_multiple_users(browser):
     # Init page object
     page = UserListPage(browser)
